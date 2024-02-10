@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="ssvm.png" width="128" align="center"/>
+  <img src="ssvm.webp" width="128" align="center"/>
 </p>
 <p align="center">
   <font size="7">
