@@ -12,7 +12,7 @@ Previously, there had been many attempts to create compilers to programmatically
 
 ### Intermediate Representation: SSVM IR
 
-With every update, Apple adds new **action**s, and modify existing ones. **SSVM IR** is resilient to the upcoming updates, and compatible with different Shortcuts versions. For each target version, the **backend** is capable of compiling a given IR to a runnable Shortcut.
+With every update, Apple adds new **action**s, and modify existing ones. **SSVM IR** is resilient to the upcoming updates, and compatible with different Shortcuts versions. For each target version, the **backend** is capable of compiling given SSVM IR representation to a runnable Shortcut.
 
 Siri Shortcuts programming language developers can write a frontend that compile their own language to SSVM IR, thus easily keep their language up-to-date! 
 
