@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="ssvm.png" width="128" align="center"/>
+  <img src="assets/ssvm.png" width="128" align="center"/>
 </p>
 <p align="center">
   <b>Siri Shortcuts Virtual Machine (SSVM)</b>
@@ -17,8 +17,8 @@ With every update, Apple adds new **action**s, and modify existing ones. **SSVM 
 Siri Shortcuts programming language developers can write a frontend that compile their own language to SSVM IR, thus easily keep their language up-to-date! 
 
 <p align="center">
-  <img src="diagram-light.png#gh-light-mode-only" width="720" align="center"/>
-  <img src="diagram-dark.png#gh-dark-mode-only" width="720" align="center"/>
+  <img src="assets/diagram-light.png#gh-light-mode-only" width="720" align="center"/>
+  <img src="assets/diagram-dark.png#gh-dark-mode-only" width="720" align="center"/>
 </p>
 
 
