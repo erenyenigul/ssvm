@@ -25,3 +25,7 @@ Siri Shortcuts programming language developers can write a frontend that compile
   <img src="assets/ir-light.png#gh-light-mode-only" width="720" align="center"/>
   <img src="assets/ir-dark.png#gh-dark-mode-only" width="720" align="center"/>
 </p>
+
+### References
+
+- Thanks [u/gluebyte](https://www.reddit.com/user/gluebyte/) for an extensive list of Siri Shortcuts actions across different iOS versions. The `WFActions.plist` files in `resources` directory were provided by them.
