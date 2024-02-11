@@ -1,3 +1,4 @@
 __pycache__
 ssvm/actions
 *.plist
+.DS_Store
