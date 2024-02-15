@@ -1,24 +1,24 @@
 
-class NoInputBehavior:
+class NoInputBehaviour:
     def __init__(self, name) -> None:
         self._name = name
 
-class ContinueNoInputBehavior(NoInputBehavior):
+class ContinueNoInputBehaviour(NoInputBehaviour):
     """
-    This behavior will continue the workflow without input.
-    This is the default behavior. Whenever this behaviour is set, the compiled .plist file will not contain the WFWorkflowNoInputBehavior key.
+    This Behaviour will continue the workflow without input.
+    This is the default behaviour. Whenever this behaviour is set, the compiled .plist file will not contain the WFWorkflowNoInputBehaviour key.
     """
     def __init__(self) -> None:
         super().__init__(None)
 
-class ShowErrorNoInputBehavior(NoInputBehavior):
+class ShowErrorNoInputBehaviour(NoInputBehaviour):
     def __init__(self) -> None:
-        super().__init__("WFWorkflowNoInputBehaviorShowError")
+        super().__init__("WFWorkflowNoInputBehaviourShowError")
 
-class AskForInputNoInputBehavior(NoInputBehavior):
+class AskForInputNoInputBehaviour(NoInputBehaviour):
     def __init__(self) -> None:
-        super().__init__("WFWorkflowNoInputBehaviorAskForInput")
+        super().__init__("WFWorkflowNoInputBehaviourAskForInput")
 
-class GetClipboardNoInputBehavior(NoInputBehavior):
+class GetClipboardNoInputBehaviour(NoInputBehaviour):
     def __init__(self) -> None:
-        super().__init__("WFWorkflowNoInputBehaviorGetClipboard")
+        super().__init__("WFWorkflowNoInputBehaviourGetClipboard")
