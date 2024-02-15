@@ -8,7 +8,7 @@ class NoInputBehaviour:
 
 class ContinueNoInputBehaviour(NoInputBehaviour):
     """
-    This Behaviour will continue the workflow without input.
+    This behaviour will continue the workflow without input.
     This is the default behaviour. Whenever this behaviour is set, the compiled .plist file will not contain the WFWorkflowNoInputBehaviour key.
     """
     def __init__(self) -> None:
