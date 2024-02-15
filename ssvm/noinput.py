@@ -1,5 +1,8 @@
-
 class NoInputBehaviour:
+    """
+    This class is used to define the behaviour when no input is provided.
+    The existing behaviours in different versions vary, but it is possible to implement missing ones using actions
+    """
     def __init__(self, name) -> None:
         self._name = name
 
