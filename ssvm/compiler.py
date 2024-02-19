@@ -2,11 +2,15 @@ import plistlib
 from ir import SSVMIR
 
 class Compiler:
+    """
+    Compiles SSVM IR to a Shortcut file.
+    """
 
     def __init__(self, target='ios17') -> None:
         self.target = target
 
     def compile(self, out_path, ir: SSVMIR):
+        
         plist = {
             'WFWorkflowClientVersion': '2106.0.3',
             'WFWorkflowHasOutputFallback': False,
