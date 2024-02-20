@@ -1,4 +1,6 @@
-class NoInputBehavior:
+from .componentgen import ShortcutComponentGenerator
+
+class NoInputBehavior(ShortcutComponentGenerator):
     """
     This class is used to define the behavior when no input is provided.
     The existing behaviors in different versions vary, but it is possible to implement missing ones using actions
@@ -13,14 +15,34 @@ class ContinueNoInputBehavior(NoInputBehavior):
     """
     def __init__(self) -> None:
         super().__init__(None)
+    
+    def componentgen(self):
+        return ""
 
 class ShowErrorNoInputBehavior(NoInputBehavior):
-    def __init__(self) -> None:
+    def __init__(self, error) -> None:
         super().__init__("WFWorkflowNoInputBehaviorShowError")
+        self._error = error
+    
+    def componentgen(self):
+        return {
+            "Name": self._name,
+            "Parameters": {
+                "Error": self._error
+            }
+        }
 
 class AskForInputNoInputBehavior(NoInputBehavior):
-    def __init__(self) -> None:
+    def __init__(self, prompt) -> None:
         super().__init__("WFWorkflowNoInputBehaviorAskForInput")
+        self._prompt = prompt
+
+    def componentgen(self):
+        return {
+            "Name": self._name,
+            "Parameters": {
+            }
+        }
 
 class GetClipboardNoInputBehavior(NoInputBehavior):
     def __init__(self) -> None:

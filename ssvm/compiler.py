@@ -1,5 +1,6 @@
-import plistlib
-from ir import SSVMIR
+import plistlib, json
+from .ir import SSVMIR
+import pathlib
 
 class Compiler:
     """
@@ -9,43 +10,33 @@ class Compiler:
     def __init__(self, target='ios17') -> None:
         self.target = target
 
-    def compile(self, out_path, ir: SSVMIR):
+    def compile(self, ir: SSVMIR, out_path: str = None):
+        """Compiles the SSVM IR to a shortcut file.
+        """
+
+        # This part exists since not all parts of the Shortcut file are implemented in SSVM IR.
+        parent_dir = pathlib.Path(__file__).parent.resolve()
+        template_path = parent_dir / "template/a-shortcut.json" 
+
+        with open(template_path, "r") as f:
+            plist = json.load(f)
+
+        # Name
+        plist['WFWorkflowName'] = ir.name
+
+        # Input Variables
+        plist['WFWorkflowHasShortcutInputVariables'] = ir.has_input_variables
         
-        plist = {
-            'WFWorkflowClientVersion': '2106.0.3',
-            'WFWorkflowHasOutputFallback': False,
-            'WFWorkflowHasShortcutInputVariables': False,
-            'WFWorkflowIcon': {
-                'WFWorkflowIconGlyphNumber': 59740,
-                'WFWorkflowIconStartColor': 4282601983,
-            },
-            'WFWorkflowImportQuestions': [],
-            'WFWorkflowInputContentItemClasses': [
-                'WFFolderContentItem', 'WFLocationContentItem', 'WFPDFContentItem', 'WFStringContentItem',
-                'WFNumberContentItem', 'WFEmailAddressContentItem', 'WFGenericFileContentItem',
-                'WFPhoneNumberContentItem', 'WFRichTextContentItem', 'WFSafariWebPageContentItem',
-                'WFArticleContentItem', 'WFContactContentItem', 'WFiTunesProductContentItem',
-                'WFAVAssetContentItem', 'WFAppStoreAppContentItem', 'WFDateContentItem',
-                'WFImageContentItem', 'WFDCMapsLinkContentItem', 'WFURLContentItem'
-            ],
-            'WFWorkflowMinimumClientVersion': 900,
-            'WFWorkflowMinimumClientVersionString': '900',
-            'WFWorkflowOutputContentItemClasses': [],
-            'WFWorkflowTypes': [],
-            'WFWorkflowNoInputBehavior': {
-                'Name': 'WFWorkflowNoInputBehaviorShowError',
-                'Parameters': {
-                    'Error': 'You must provide a program to run.'
-                }
-            },
-            'WFWorkflowName': ir.name,
-            'WFWorkflowActions': [],
-        }
+        # No Input Behavior
+        plist['WFWorkflowNoInputBehavior'] = ir.no_input_behavior.componentgen()
         
+        #Actions
+        plist['WFWorkflowActions'] = []
         for action in ir.actions:
-            plist['WFWorkflowActions'].append({
-                'WFWorkflowActionIdentifier': action.identifier
-            })
+            plist['WFWorkflowActions'] += action.componentgen()
+
+        if not out_path:
+            out_path = ir.name + ".shortcut"
 
         with open(out_path, "wb") as f:
             plistlib.dump(plist, f)

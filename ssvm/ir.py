@@ -1,4 +1,4 @@
-from noinput import ContinueNoInputBehavior
+from .noinput import ContinueNoInputBehavior
 
 class SSVMIR:
     """
@@ -11,6 +11,8 @@ class SSVMIR:
         self._actions = []
         self._name = ""
         self._no_input_behavior = ContinueNoInputBehavior()
+        self._has_input_variables = False
+        self._actions = []
 
     @property
     def name(self):
@@ -20,9 +22,20 @@ class SSVMIR:
         """
         return self._name
 
-    @property.setter
-    def name(self, name):
-        self._name = name
+    @name.setter
+    def name(self, new_name):
+        self._name = new_name
+
+    @property
+    def has_input_variables(self):
+        """
+        This property is True if the Shortcut has an input variable.
+        """
+        return self._has_input_variables
+    
+    @has_input_variables.setter
+    def has_input_variables(self, has_input):
+        self._has_input_variables = has_input 
 
     @property
     def no_input_behavior(self):
@@ -32,10 +45,18 @@ class SSVMIR:
         """
         return self._no_input_behavior
     
-    @property.setter
+    @no_input_behavior.setter
     def no_input_behavior(self, behavior):
         self._no_input_behavior = behavior
 
+    @property
+    def actions(self):
+        """
+        This is a list of actions in the Shortcut.
+        This property modifies the WFWorkflowActions key in the compiled .plist file.
+        """
+        return self._actions
+    
     def save(self, path):
         raise NotImplementedError()
     
